@@ -9,25 +9,13 @@ letters = ("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
 #######################    OS color    #####################################################################################################
 if os.name == 'nt':
 	class fg:
-		BLACK   = ""
 		RED     = ''
-		GREEN   = ''
-		YELLOW  = ''
 		BLUE    = ''
-		MAGENTA = ''
-		CYAN    = ''
-		WHITE   = ''
 		RESET   = ''
 
 	class bg:
-		BLACK   = ''
 		RED     = ''
-		GREEN   = ''
-		YELLOW  = ''
 		BLUE    = ''
-		MAGENTA = ''
-		CYAN    = ''
-		WHITE   = ''
 		RESET   = ''
 
 	class style:
@@ -39,25 +27,13 @@ if os.name == 'nt':
 
 else:
 	class fg:
-		BLACK   = '\033[30m'
 		RED     = '\033[31m'
-		GREEN   = '\033[32m'
-		YELLOW  = '\033[33m'
 		BLUE    = '\033[34m'
-		MAGENTA = '\033[35m'
-		CYAN    = '\033[36m'
-		WHITE   = '\033[37m'
 		RESET   = '\033[39m'
 
 	class bg:
-		BLACK   = '\033[40m'
 		RED     = '\033[41m'
-		GREEN   = '\033[42m'
-		YELLOW  = '\033[43m'
 		BLUE    = '\033[44m'
-		MAGENTA = '\033[45m'
-		CYAN    = '\033[46m'
-		WHITE   = '\033[47m'
 		RESET   = '\033[49m'
 
 	class style:
