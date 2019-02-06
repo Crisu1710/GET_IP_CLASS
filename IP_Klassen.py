@@ -126,13 +126,13 @@ if ipadd == "":
 else:
 	#if ipadd.endswith (".com") or ipadd.endswith (".de") or ipadd.endswith (".org") or ipadd.endswith (".uk") or ipadd.endswith (".net"):
 	try:
-		if any((ipadd in letters) for ipadd in letters):
+		if any((ipadd in letters) for ipadd in letters): # is it a domain wit letters a - z
 			HostIP = socket.gethostbyname(ipadd)
 			print (HostIP)
 			ip = HostIP.split(".")
-		else:
+		else:							# its a ip with numbers
 			ip = ipadd.split(".")
-	except Exception:
+	except Exception:   # if ther isn no ping to the domain
 		print (fg.RED + "type a name with a normal top level domain" + style.RESET_ALL)
 		print (fg.RED + "or connect to the internet" + style.RESET_ALL)
 		exit()
