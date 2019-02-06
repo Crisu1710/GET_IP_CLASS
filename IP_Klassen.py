@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
+##^^used for linux > ./name.py
 ######################## by Robin Schneider / Crisu1710####################################################################################
 import socket
 import os
+
+letters = set('abcdefghijklmnopqrstuvwxyz')  # letters to check if its a domain
 #######################    OS color    #####################################################################################################
 if os.name == 'nt':
 	class fg:
@@ -63,9 +66,7 @@ else:
 		NORMAL    = '\033[22m'
 		RESET_ALL = '\033[0m'
 		UNDERLINE = '\033[4m'
-################ get ip of this pc #########################################################################################################
-letters = set('abcdefghijklmnopqrstuvwxyz')
-
+################ get ip of this pc and check if internet is connected ######################################################################
 try:
 	PC_IP = ([l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] #get ip from hostname (ping hostname)
 	if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), # if ip starts with 127 (localhost) ping Google DNS and lisen to own IP
@@ -74,7 +75,7 @@ except Exception:
 	pass
 	print (fg.RED + "NO INTERNET CONNECTION" + style.RESET_ALL)
 	print (fg.RED + "NO INTERNET CONNECTION" + style.RESET_ALL)
-#########################################################################
+
 print ("""
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 █▀▀▀▀      █▀▀▀▀▀    ▀▀▀▀█▀▀▀▀         █  █▀▀▀▀█         █▀▀▀▀▀    █       █▀▀▀▀▀█    █▀▀▀▀▀▀▀   █▀▀▀▀▀▀▀
@@ -85,9 +86,9 @@ print ("""
 +++++++++++++++++++++++++++++++++++ by Robin Schneider (Crisu1710) +++++++++++++++++++++++++++++++++++++++++
 """)
 
-YorN = input("Use your own IP? (Y/N/?) : ") #your ip or other ip
+YorN = input("Use your own IP? (Y/N/?) : ") 								#your ip or other ip
 if YorN.startswith ("N") or YorN.startswith ("n") or YorN == "":            # no, Type a IP
-	ipadd = input("PI (xxx.xxx.xxx.xxx) or DOMAIN (name.com) : ") # type a ip # ip as string
+	ipadd = input("PI (xxx.xxx.xxx.xxx) or DOMAIN (name.com) : ") 			# type a ip # ip as string
 	print (style.RESET_ALL)
 elif YorN.startswith ("Y") or YorN.startswith ("y"):                        # yes, use the IP from this PC
 	try:
@@ -118,7 +119,7 @@ elif YorN:																	# close script will work wen you type exit
 ############## split at . to get e.g. 192 168 2 3 #########
 if ipadd == "":
 	print (fg.BLUE + "Type a IP like 1.1.1.1 or 192.168.2.3")
-	print ("The IP of your PC is automatically used" + style.RESET_ALL)    #<<<<
+	print ("The IP of your PC is automatically used" + style.RESET_ALL)
 	try:
 		ipadd = PC_IP
 		ip = PC_IP.split(".")
@@ -126,15 +127,15 @@ if ipadd == "":
 		print (fg.RED + "NO INTERNET CONNECTION" + style.RESET_ALL)
 		ip = ipadd.split(".")
 else:
-	#if ipadd.endswith (".com") or ipadd.endswith (".de") or ipadd.endswith (".org") or ipadd.endswith (".uk") or ipadd.endswith (".net"):
 	try:
-		if any((ipadd in letters) for ipadd in letters): # is it a domain wit letters a - z
+		#if ipadd.endswith (".com") or ipadd.endswith (".de") or ipadd.endswith (".org") or ipadd.endswith (".uk") or ipadd.endswith (".net"):
+		if any((ipadd in letters) for ipadd in letters): # <<<<<<<<<<<<<<< is it a domain wit letters a - z
 			HostIP = socket.gethostbyname(ipadd)
 			print (HostIP)
 			ip = HostIP.split(".")
 		else:							# its a ip with numbers
 			ip = ipadd.split(".")
-	except Exception:   # if ther isn no ping to the domain
+	except Exception:   # <<<<<<<<<<<<<<<< if ther isn no ping to the domain
 		print (fg.RED + "type a name with a normal top level domain" + style.RESET_ALL)
 		print (fg.RED + "or connect to the internet" + style.RESET_ALL)
 		exit()
@@ -147,12 +148,18 @@ try:
 except Exception:
 	print (fg.RED + "Please enter a ip xxx.xxx.xxx.xxx like 192.168.2.3" + style.RESET_ALL)
 	exit()
+
+################ max ip ######################################
+if p1 > 255 or p2 > 255 or p3 > 255 or p4 > 255:
+	print ("Max is 255.255.255.255")
+	exit()
+else:
+	pass
 ### remove 0b and max/min 8 bit bp = binary part ###
 bp1 = str(bin(p1))[2:].zfill(8) # 11000000
 bp2 = str(bin(p2))[2:].zfill(8) # 10101000
 bp3 = str(bin(p3))[2:].zfill(8) # 00000010
 bp4 = str(bin(p4))[2:].zfill(8) # 00000011
-
 ################################# print complete IP as binary ###########
 print (ipadd,end= " >>> ")
 print (style.UNDERLINE + fg.RED + bp1[:3] + style.RESET_ALL + style.UNDERLINE + bp1[3:] + " " + bp2 + " " + bp3 + " " + bp4,end= "")
@@ -183,6 +190,8 @@ elif IPclass == (" C"):
 		pp = ("PUBLIC ")
 	else:
 		pp = ("PRIVATE ")
+elif IPclass == (" D") or IPclass == (" E"):
+	pp = ("")
 
 print (style.RESET_ALL + " >>> " + fg.RED + pp + "CLASS" + IPclass)
 print (style.RESET_ALL)
@@ -192,10 +201,10 @@ print ("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 clear_all = input("clear terminal? Y/N : ")
 if clear_all.startswith ("Y") or clear_all.startswith ("y"):
 	if os.name == 'nt':
-		clear = lambda: os.system('cls')
+		clear = lambda: os.system('cls') #windows
 		clear()
 	else:
-		clear = lambda: os.system('clear')
+		clear = lambda: os.system('clear') #linux
 		clear()
 else:
 	exit()
