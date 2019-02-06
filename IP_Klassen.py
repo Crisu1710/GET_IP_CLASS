@@ -158,7 +158,7 @@ else:
 	pass
 
 try:
-	if int(ip[4]) > 0:
+	if int(ip[4]) >= 0:
 		print (fg.RED + "Max is 255.255.255.255")
 		exit()
 	else:
