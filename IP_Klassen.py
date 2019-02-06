@@ -128,6 +128,7 @@ else:
 	try:
 		if any((ipadd in letters) for ipadd in letters):
 			HostIP = socket.gethostbyname(ipadd)
+			print (HostIP)
 			ip = HostIP.split(".")
 		else:
 			ip = ipadd.split(".")
