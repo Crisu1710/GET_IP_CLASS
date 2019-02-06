@@ -5,7 +5,7 @@
 import socket
 import os
 
-letters = set('abcdefghijklmnopqrstuvwxyz')  # letters to check if its a domain
+letters = ("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")  # letters to check if its a domain
 #######################    OS color    #####################################################################################################
 if os.name == 'nt':
 	class fg:
@@ -129,7 +129,8 @@ if ipadd == "":
 else:
 	try:
 		#if ipadd.endswith (".com") or ipadd.endswith (".de") or ipadd.endswith (".org") or ipadd.endswith (".uk") or ipadd.endswith (".net"):
-		if any((ipadd in letters) for ipadd in letters): # <<<<<<<<<<<<<<< is it a domain wit letters a - z
+		if ipadd.endswith (letters):
+		#if any((ipadd in letters) for ipadd in letters): # <<<<<<<<<<<<<<< is it a domain wit letters a - z
 			HostIP = socket.gethostbyname(ipadd)
 			print (HostIP)
 			ip = HostIP.split(".")
@@ -151,9 +152,18 @@ except Exception:
 
 ################ max ip ######################################
 if p1 > 255 or p2 > 255 or p3 > 255 or p4 > 255:
-	print ("Max is 255.255.255.255")
+	print (fg.RED + "Max is 255.255.255.255")
 	exit()
 else:
+	pass
+
+try:
+	if int(ip[4]) > 0:
+		print (fg.RED + "Max is 255.255.255.255")
+		exit()
+	else:
+		pass
+except Exception:
 	pass
 ### remove 0b and max/min 8 bit bp = binary part ###
 bp1 = str(bin(p1))[2:].zfill(8) # 11000000
