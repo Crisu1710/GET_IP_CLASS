@@ -62,7 +62,7 @@ else:
 		RESET_ALL = '\033[0m'
 		UNDERLINE = '\033[4m'
 ################ get ip of this pc #########################################################################################################
-letters = set('abcdefghijklmnop')
+letters = set('abcdefghijklmnopqrstuvwxyz')
 
 try:
 	PC_IP = ([l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] #get ip from hostname (ping hostname)
@@ -129,12 +129,12 @@ else:
 		if any((ipadd in letters) for ipadd in letters):
 			HostIP = socket.gethostbyname(ipadd)
 			ip = HostIP.split(".")
+		else:
+			ip = ipadd.split(".")
 	except Exception:
 		print (fg.RED + "type a name with a normal top level domain" + style.RESET_ALL)
 		print (fg.RED + "or connect to the internet" + style.RESET_ALL)
 		exit()
-	else:
-		ip = ipadd.split(".")
 ####### split and Convert Strings into Integers P = part ######
 try:
 	p1 = int(ip[0]) # >>>>>>>>>>>>> # 192
