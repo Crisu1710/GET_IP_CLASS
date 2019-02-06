@@ -62,6 +62,8 @@ else:
 		RESET_ALL = '\033[0m'
 		UNDERLINE = '\033[4m'
 ################ get ip of this pc #########################################################################################################
+letters = set('abcdefghijklmnop')
+
 try:
 	PC_IP = ([l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] #get ip from hostname (ping hostname)
 	if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), # if ip starts with 127 (localhost) ping Google DNS and lisen to own IP
@@ -83,7 +85,7 @@ print ("""
 
 YorN = input("Use your own IP? (Y/N/?) : ") #your ip or other ip
 if YorN.startswith ("N") or YorN.startswith ("n") or YorN == "":            # no, Type a IP
-	ipadd = input("PI : ") # type a ip # ip as string
+	ipadd = input("PI (xxx.xxx.xxx.xxx) or DOMAIN (name.com) : ") # type a ip # ip as string
 	print (style.RESET_ALL)
 elif YorN.startswith ("Y") or YorN.startswith ("y"):                        # yes, use the IP from this PC
 	try:
@@ -122,7 +124,17 @@ if ipadd == "":
 		print (fg.RED + "NO INTERNET CONNECTION" + style.RESET_ALL)
 		ip = ipadd.split(".")
 else:
-	ip = ipadd.split(".")
+	#if ipadd.endswith (".com") or ipadd.endswith (".de") or ipadd.endswith (".org") or ipadd.endswith (".uk") or ipadd.endswith (".net"):
+	try:
+		if any((ipadd in letters) for ipadd in letters):
+			HostIP = socket.gethostbyname(ipadd)
+			ip = HostIP.split(".")
+	except Exception:
+		print (fg.RED + "type a name with a normal top level domain" + style.RESET_ALL)
+		print (fg.RED + "or connect to the internet" + style.RESET_ALL)
+		exit()
+	else:
+		ip = ipadd.split(".")
 ####### split and Convert Strings into Integers P = part ######
 try:
 	p1 = int(ip[0]) # >>>>>>>>>>>>> # 192
