@@ -167,10 +167,27 @@ elif bp1.startswith ("1110"):
 	IPclass = (" D")
 elif bp1.startswith ("1111"):
 	IPclass = (" E")
-############### v  + '\033[0m' + '\033[5m' ##################
-print (style.RESET_ALL + " >>> " + fg.RED + "CLASS" + IPclass)
+############### privat or puplic ################################
+if IPclass == (" A"):
+	if p1 < 10 or p1 > 255:
+		pp = ("PUBLIC ")
+	else:
+		pp = ("PRIVATE ")
+elif IPclass == (" B"):
+	if p2 < 16 or p2 > 31 or p1 > 172 or p1 < 172:
+		pp = (" PUBLIC ")
+	else:
+		pp = ("PRIVATE ")
+elif IPclass == (" C"):
+	if p2 < 168 or p2 > 168 or p1 > 192 or p1 < 192:
+		pp = ("PUBLIC ")
+	else:
+		pp = ("PRIVATE ")
+
+print (style.RESET_ALL + " >>> " + fg.RED + pp + "CLASS" + IPclass)
 print (style.RESET_ALL)
 print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+##################################################################
 
 clear_all = input("clear terminal? Y/N : ")
 if clear_all.startswith ("Y") or clear_all.startswith ("y"):
