@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
-##^^used for linux > ./name.py
-######################## by Robin Schneider / Crisu1710####################################################################################
+##^^shebang used for > ./name.py
+######################## by Robin Schneider / Crisu1710 ###################################################################################
 import socket
 import os
 
 
-
-letters = ("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")  # letters to check if its a domain
+# letters to check if its a domain
+letters = ("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
 #######################    OS color    and errors  ########################################################################################
 if os.name == 'nt':
 	class fg:
@@ -100,7 +100,7 @@ elif YorN == "?" or YorN.startswith ("H") or YorN.startswith ("h"):         # ge
 	#ipadd = input("PI(1.1.1.1) : ")
 	#os.system("IP_Klassen.py")
 	exit()
-elif YorN:																	# close script will work wen you type exit
+elif YorN:																	# close script
 	print (fg.RED, style.BRIGHT)
 	print ("Use (Y/y) or (N/n) or (?/H/h)")
 	print (style.RESET_ALL)
@@ -121,11 +121,16 @@ else:
 		#if ipadd.endswith (".com") or ipadd.endswith (".de") or ipadd.endswith (".org") or ipadd.endswith (".uk") or ipadd.endswith (".net"):
 		if ipadd.endswith (letters):
 		#if any((ipadd in letters) for ipadd in letters): # <<<<<<<<<<<<<<< is it a domain wit letters a - z
-			HostIP = socket.gethostbyname(ipadd)
-			print (HostIP)
-			ip = HostIP.split(".")
-		else:							# its a ip with numbers
-			ip = ipadd.split(".")
+			Host = socket.gethostbyname(ipadd)
+			print (Host)
+			ip = Host.split(".")
+		else: # its a ip (with numbers)
+			try: # get the host name of the ip
+				Host = socket.gethostbyaddr(ipadd)
+				print (Host)
+				ip = ipadd.split(".")
+			except Exception:	# if ip can't be pinged
+				ip = ipadd.split(".")
 	except Exception:   # <<<<<<<<<<<<<<<< if ther isn no ping to the domain
 		print (error.TLD)
 		print (error.CONNECTION)
