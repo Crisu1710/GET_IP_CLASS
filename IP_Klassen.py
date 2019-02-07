@@ -127,7 +127,7 @@ else:
 		else: # its a ip (with numbers)
 			try: # get the host name of the ip
 				Host = socket.gethostbyaddr(ipadd)
-				print (Host)
+				print (Host[0])
 				ip = ipadd.split(".")
 			except Exception:	# if ip can't be pinged
 				ip = ipadd.split(".")
