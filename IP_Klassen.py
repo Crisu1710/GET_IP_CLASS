@@ -202,7 +202,7 @@ elif IPclass == (" E"):
 	if p1 == 255:
 		mask = str(bp1 + bp2 + bp3 + bp4)
 		print ("ID :", mask.count("1"))
-		pp = ("SUBNET MASK ",)
+		pp = ("SUBNET MASK ")
 	else:
 		pp = ("RESEARCH ")
 
