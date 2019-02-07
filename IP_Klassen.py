@@ -197,9 +197,14 @@ elif IPclass == (" C"):
 	else:
 		pp = ("PRIVATE ")
 elif IPclass == (" D"):
-	pp = ("multicast ")
+	pp = ("MULTICAST ")
 elif IPclass == (" E"):
-	pp = ("research ")
+	if p1 == 255:
+		mask = str(bp1 + bp2 + bp3 + bp4)
+		print ("ID :", mask.count("1"))
+		pp = ("SUBNET MASK ",)
+	else:
+		pp = ("RESEARCH ")
 
 
 print (ipadd,end= " >>> ")

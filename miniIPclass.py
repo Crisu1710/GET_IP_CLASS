@@ -1,6 +1,4 @@
 # by Robin Schneider / Crisu1710
-import socket
-import os
 ipadd = input("IP : ")
 ip = ipadd.split(".")
 p1 = int(ip[0])
