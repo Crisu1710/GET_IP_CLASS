@@ -182,17 +182,19 @@ if IPclass == (" A"):
 		pp = ("Routing ")
 	elif p1 == 127:
 		pp = ("Localhost ")
-	elif p1 < 10 or p1 > 255:
+	elif p1 != 10:
 		pp = ("PUBLIC ")
 	else:
 		pp = ("PRIVATE ")
 elif IPclass == (" B"):
-	if p2 < 16 or p2 > 31 or p1 > 172 or p1 < 172:
-		pp = (" PUBLIC ")
+	if p1 == 169 and p2 == 254:
+		pp = ("APIPA ")
+	elif p2 < 16 or p2 > 31 or p1 != 172:
+		pp = ("PUBLIC ")
 	else:
 		pp = ("PRIVATE ")
 elif IPclass == (" C"):
-	if p2 < 168 or p2 > 168 or p1 > 192 or p1 < 192:
+	if p1 != 192 or p2 != 168:
 		pp = ("PUBLIC ")
 	else:
 		pp = ("PRIVATE ")
@@ -205,7 +207,6 @@ elif IPclass == (" E"):
 		pp = ("SUBNET MASK ")
 	else:
 		pp = ("RESEARCH ")
-
 
 print (ipadd,end= " >>> ")
 print (style.UNDERLINE + fg.RED + bp1[:3] + style.RESET_ALL + style.UNDERLINE + bp1[3:] + " " + bp2 + " " + bp3 + " " + bp4,end= "")
