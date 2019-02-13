@@ -86,6 +86,7 @@ if YorN.startswith ("N") or YorN.startswith ("n") or YorN == "":            # no
 	print (style.RESET_ALL)
 elif YorN == "l" or YorN == "L":
 	for ipadd in iplist:
+		pass
 elif YorN.startswith ("Y") or YorN.startswith ("y"):                        # yes, use the IP from this PC
 	try:
 		ipadd = PC_IP
