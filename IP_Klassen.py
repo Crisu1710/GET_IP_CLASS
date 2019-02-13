@@ -8,8 +8,6 @@ import os
 r = open('IPlist.txt', "r")
 iplist = r.readlines()
 
-list = open('IPlist.txt', "w")
-
 w = open('ips.log', "a")
 
 # letters to check if its a domain
@@ -82,10 +80,12 @@ print ("""
 +++++++++++++++++++++++++++++++++++ by Robin Schneider (Crisu1710) +++++++++++++++++++++++++++++++++++++++++
 """)
 
-YorN = input("Use your own IP? (Y/N/?) : ") 								#your ip or other ip
+YorN = input("Use your own IP? (L/Y/N/?) : ") 								#your ip or other ip
 if YorN.startswith ("N") or YorN.startswith ("n") or YorN == "":            # no, Type a IP
 	ipadd = input("PI (xxx.xxx.xxx.xxx) or DOMAIN (name.com) : ") 			# type a ip # ip as string
 	print (style.RESET_ALL)
+elif YorN == "l" or YorN == "L":
+	for ipadd in iplist:
 elif YorN.startswith ("Y") or YorN.startswith ("y"):                        # yes, use the IP from this PC
 	try:
 		ipadd = PC_IP
@@ -98,6 +98,7 @@ elif YorN.startswith ("Y") or YorN.startswith ("y"):                        # ye
 elif YorN == "?" or YorN.startswith ("H") or YorN.startswith ("h"):         # get help use
 	print (style.BRIGHT, fg.BLUE)
 	print ("Type Y/y or Yes/yes to use the IP of your actual network")
+	print ("Type L/l to use a list of IPs from IPlist.txt")
 	print ("Type N/n or No/no to type a IP e.g. 1.1.1.1 or 192.168.2.1")
 	print ("Type ?/H/h or Help/help to open this help")
 	print ("Some functions only working with internet connection!")
@@ -112,8 +113,7 @@ elif YorN:																	# close script
 	print (style.RESET_ALL)
 	exit()
 
-w.write(ipadd + "\n")
-w.close()
+
 ############## split at . to get e.g. 192 168 2 3 #########
 if ipadd == "":
 	print (error.IP)
@@ -222,6 +222,9 @@ print (style.RESET_ALL + " >>> " + fg.RED + pp + "CLASS" + IPclass)
 print (style.RESET_ALL)
 print ("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 ##################################################################
+
+w.write(ipadd + "\n")
+w.close()
 
 clear_all = input("clear terminal? Y/N : ")
 if clear_all.startswith ("Y") or clear_all.startswith ("y"):
