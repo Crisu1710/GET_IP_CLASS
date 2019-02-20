@@ -5,10 +5,10 @@
 import socket
 import os
 
-r = open('IPlist.txt', "r")
-iplist = r.readlines()
+#r = open('IPlist.txt', "r")
+#iplist = r.readlines()
 
-list = open('IPlist.txt', "w")
+#list = open('IPlist.txt', "w")
 
 w = open('ips.log', "a")
 
