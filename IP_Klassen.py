@@ -78,7 +78,7 @@ print ("""
 
 YorN = input("Use your own IP? (Y/N/?) : ") 								#your ip or other ip
 if YorN.startswith ("N") or YorN.startswith ("n") or YorN == "":            # no, Type a IP
-	ipadd = input("PI (xxx.xxx.xxx.xxx) or DOMAIN (name.com) : ") 			# type a ip # ip as string
+	ipadd = input("IP (xxx.xxx.xxx.xxx) or DOMAIN (name.com) : ") 			# type a ip # ip as string
 	print (style.RESET_ALL)
 elif YorN.startswith ("Y") or YorN.startswith ("y"):                        # yes, use the IP from this PC
 	try:
