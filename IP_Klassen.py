@@ -5,6 +5,12 @@
 import socket
 import os
 
+r = open('IPlist.txt', "r")
+iplist = r.readlines()
+
+list = open('IPlist.txt', "w")
+
+w = open('ips.log', "a")
 
 # letters to check if its a domain
 letters = ("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
@@ -106,6 +112,8 @@ elif YorN:																	# close script
 	print (style.RESET_ALL)
 	exit()
 
+w.write(ipadd + "\n")
+w.close()
 ############## split at . to get e.g. 192 168 2 3 #########
 if ipadd == "":
 	print (error.IP)
