@@ -174,10 +174,29 @@ bp2 = str(bin(p2))[2:].zfill(8) # 10101000
 bp3 = str(bin(p3))[2:].zfill(8) # 00000010
 bp4 = str(bin(p4))[2:].zfill(8) # 00000011
 ########### to hex for VM's to make a mac ###################
-hex1 = hex(p1)[0] + hex(p1)[2]
+hex1 = hex(p1)[2:]
 hex2 = hex(p2)[2:]
 hex3 = hex(p3)[2:]
 hex4 = hex(p4)[2:]
+if len(hex1) == 1:
+	hex1 = "0" + hex1
+else:
+	hex1 = hex1
+
+if len(hex2) == 1:
+	hex2 = "0" + hex2
+else:
+	hex2 = hex2
+
+if len(hex3) == 1:
+	hex3 = "0" + hex3
+else:
+	hex3 = hex3
+
+if len(hex4) == 1:
+	hex4 = "0" + hex4
+else:
+	hex4 = hex4
 hex ="00:ff:" + hex1 +":"+ hex2 +":"+ hex3 +":"+ hex4 # 11000000
 #################################################
 w.write(ipadd + " <====> " + hex + "\n")
