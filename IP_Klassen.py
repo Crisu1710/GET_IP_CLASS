@@ -112,8 +112,8 @@ elif YorN:																	# close script
 	print (style.RESET_ALL)
 	exit()
 
-w.write(ipadd + "\n")
-w.close()
+# w.write(ipadd + "\n")
+# w.close()
 ############## split at . to get e.g. 192 168 2 3 #########
 if ipadd == "":
 	print (error.IP)
@@ -179,6 +179,9 @@ hex2 = hex(p2)[2:]
 hex3 = hex(p3)[2:]
 hex4 = hex(p4)[2:]
 hex ="00:ff:" + hex1 +":"+ hex2 +":"+ hex3 +":"+ hex4 # 11000000
+#################################################
+w.write(ipadd + " <====> " + hex + "\n")
+w.close()
 ############## print Klasse .. ##################
 if bp1.startswith ("0"):
 	IPclass = (" A") # 255.0.0.0/8 comming soon
@@ -225,7 +228,7 @@ elif IPclass == (" E"):
 print (ipadd,end= " >>> ")
 print (style.UNDERLINE + fg.RED + bp1[:3] + style.RESET_ALL + style.UNDERLINE + bp1[3:] + " " + bp2 + " " + bp3 + " " + bp4,end= "")
 print (style.RESET_ALL + " >>> " + fg.RED + pp + "CLASS" + IPclass)
-print (style.RESET_ALL + "MAC: " + hex)
+print (style.RESET_ALL + "MAC: " + fg.RED + hex + style.RESET_ALL + " <<<< This MAC Address is generated from your IP Address you can use it for a Virtual Machine")
 print (style.RESET_ALL)
 print ("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 ##################################################################
