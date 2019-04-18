@@ -173,6 +173,12 @@ bp1 = str(bin(p1))[2:].zfill(8) # 11000000
 bp2 = str(bin(p2))[2:].zfill(8) # 10101000
 bp3 = str(bin(p3))[2:].zfill(8) # 00000010
 bp4 = str(bin(p4))[2:].zfill(8) # 00000011
+########### to hex for VM's to make a mac ###################
+hex1 = hex(p1)[0] + hex(p1)[2]
+hex2 = hex(p2)[2:]
+hex3 = hex(p3)[2:]
+hex4 = hex(p4)[2:]
+hex ="00:ff:" + hex1 +":"+ hex2 +":"+ hex3 +":"+ hex4 # 11000000
 ############## print Klasse .. ##################
 if bp1.startswith ("0"):
 	IPclass = (" A") # 255.0.0.0/8 comming soon
@@ -219,6 +225,7 @@ elif IPclass == (" E"):
 print (ipadd,end= " >>> ")
 print (style.UNDERLINE + fg.RED + bp1[:3] + style.RESET_ALL + style.UNDERLINE + bp1[3:] + " " + bp2 + " " + bp3 + " " + bp4,end= "")
 print (style.RESET_ALL + " >>> " + fg.RED + pp + "CLASS" + IPclass)
+print (style.RESET_ALL + "MAC: " + hex)
 print (style.RESET_ALL)
 print ("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 ##################################################################
