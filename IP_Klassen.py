@@ -199,7 +199,7 @@ else:
 	hex4 = hex4
 hex ="00:ff:" + hex1 +":"+ hex2 +":"+ hex3 +":"+ hex4 # 11000000
 #################################################
-w.write(ipadd + " <====> " + hex + "\n")
+w.write(hex + " ====> " + ipadd + "\n")
 w.close()
 ############## print Klasse .. ##################
 if bp1.startswith ("0"):
